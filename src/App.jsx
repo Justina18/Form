@@ -8,7 +8,8 @@ function App() {
     email: "",
     address:"",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    admin: false
   })
 
   const inputs =[
@@ -38,7 +39,7 @@ function App() {
   {
     id: 4,
     placeholder: "Password",
-    type: "text",
+    type: "password",
     name: "password",
     errMsg: `At least 8 characters, min 1 Uppercase 1 Lowercase 1 Number 1 special character`,
     required: true,
@@ -47,7 +48,7 @@ function App() {
   {
     id: 5,
     placeholder: "Confirm Password",
-    type: "text",
+    type: "password",
     name: "confirmPassword",
     errMsg: "must match password",
     required: true,
@@ -62,7 +63,10 @@ const handleChange= e =>{
 const receiveValues =(e)=>{
   e.preventDefault()
   console.log(value)
+  window.location.reload()
 }
+
+
 
   return (
     <main className="App" >
@@ -71,6 +75,7 @@ const receiveValues =(e)=>{
         {inputs.map((input)=>
       <FormInput key={input.id} {...input} handleChange={handleChange} value={value[input.name]}/>
       )}
+      <input type="checkbox" onChange={(e)=>{setValue({...value, admin: true})}} />
         <button type="submit">
           Submit
         </button>
